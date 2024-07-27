@@ -1,19 +1,21 @@
-import { createSidebar } from '../components/sidebar.js';
+import { createUser } from '/api/user.api.js';
 
-document.body.insertAdjacentHTML('afterbegin', createSidebar());
+document.getElementById('signup-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-const signupForm = document.getElementById('signupForm');
-signupForm.addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const formData = new FormData(signupForm);
-  const data = Object.fromEntries(formData.entries());
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
 
-  // Post data to JSON server
-  await fetch('http://localhost:3000/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
+    const user = {
+        username,
+        email,
+        password,
+        role
+    };
 
-  alert('Sign up successful!');
+    await createUser(user);
+    alert('Signup successful! Please login.');
+    window.location.href = '/pages/login.html';
 });

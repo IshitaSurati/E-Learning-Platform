@@ -1,19 +1,13 @@
 {
   "users": [
     {
-      "id": "be41",
+      "id": "30b3",
       "username": "ishita",
-      "email": "ishita123@gmail.com",
-      "password": "12345"
+      "email": "ishitasurati83@gmail.com",
+      "password": "12345",
+      "role": "author"
     }
   ],
-  "courses": [
-    {
-      "id": "5ae6",
-      "title": "JavaScript",
-      "image": "https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062_640.jpg",
-      "description": "learn java"
-    }
-  ],
+  "courses": [],
   "purchases": []
 }

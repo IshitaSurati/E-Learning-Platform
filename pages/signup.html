@@ -1,24 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main>
-    <h1>Sign Up</h1>
-    <form id="signupForm">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-      <button type="submit">Sign Up</button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/index.html">E-Learning Platform</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/course-details.html">Courses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/profile.html">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/order-history.html">Order History</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/login.html">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/signup.html">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="logout-link">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container mt-5">
+    <h2>Signup</h2>
+    <form id="signup-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select class="form-control" id="role" required>
+          <option value="user">User</option>
+          <option value="author">Author</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Signup</button>
     </form>
-  </main>
-  <script type="module" src="../js/signup.js"></script>
+  </div>
+  <script src="/js/signup.js" type="module"></script>
 </body>
 </html>
