@@ -4,61 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/index.html">E-Learning Platform</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/course-details.html">Courses</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/profile.html">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/order-history.html">Order History</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/login.html">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/signup.html">Signup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="logout-link">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-      
+    <div id="navbar-container"></div>
     <div class="container mt-5">
-        <h2>Profile</h2>
+        <h1>Profile</h1>
         <form id="profile-form">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" disabled>
+                <input type="text" id="username" name="username" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" disabled>
+                <input type="email" id="email" name="email" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
+                <label for="password">New Password (leave blank if unchanged)</label>
+                <input type="password" id="password" name="password" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Update Profile</button>
-            <button id="delete-btn" class="btn btn-danger ml-3">Delete Account</button>
         </form>
     </div>
-    <script src="/js/profile.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="module" src="/js/profile.js"></script>
 </body>
 </html>

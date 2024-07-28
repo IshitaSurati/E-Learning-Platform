@@ -1,58 +1,12 @@
-const COURSE_API_URL = 'http://localhost:3000/courses';
-
-export const getCourses = async () => {
+export async function getCourses() {
     try {
-        const response = await fetch(COURSE_API_URL);
-        return await response.json();
+        const response = await fetch('http://localhost:3000/courses');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.error('Error:', error);
+        console.error('There was a problem with the fetch operation:', error);
     }
-};
-
-export const createCourse = async (course) => {
-    try {
-        const response = await fetch(COURSE_API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(course)
-        });
-        return await response.json();
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
-
-export const updateCourse = async (course) => {
-    try {
-        await fetch(`${COURSE_API_URL}/${course.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(course)
-        });
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
-
-export const deleteCourse = async (id) => {
-    try {
-        await fetch(`${COURSE_API_URL}/${id}`, {
-            method: 'DELETE'
-        });
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
-
-export const getCourseById = async (id) => {
-    try {
-        const response = await fetch(`${COURSE_API_URL}/${id}`);
-        return await response.json();
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+}

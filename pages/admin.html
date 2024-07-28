@@ -3,64 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/index.html">E-Learning Platform</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/course-details.html">Courses</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/profile.html">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/order-history.html">Order History</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/login.html">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/signup.html">Signup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="logout-link">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
-  <div class="container mt-5">
-    <h2>Admin Dashboard</h2>
-    <form id="create-course-form">
-      <!-- Course creation form fields -->
+    <div id="navbar-container"></div>
+    <form id="course-form" class="container mt-5">
+        <h1>Create Course</h1>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="image">Image URL</label>
+            <input type="text" id="image" name="image" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="topics">Topics</label>
+            <input type="text" id="topics" name="topics" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="subtopics">Sub-Topics</label>
+            <input type="text" id="subtopics" name="subtopics" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="details">Details</label>
+            <textarea id="details" name="details" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="seats">Seats</label>
+            <input type="number" id="seats" name="seats" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="coupon">Coupon Code</label>
+            <input type="text" id="coupon" name="coupon" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Course</button>
     </form>
-  </div>
-  <script src="/js/admin.js" type="module"></script>
-  <script>
-    // Check user role on page load
-    import { getUserInfo } from '/api/user.api.js';
-
-    document.addEventListener('DOMContentLoaded', async function() {
-        const user = await getUserInfo();
-        if (user && user.role === 'author') {
-            // Allow access to admin features
-            // Add admin functionalities here
-        } else {
-            // Redirect if not an author
-            window.location.href = '/index.html'; // Redirect to home or any other page
-        }
-    });
-  </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="module" src="/js/admin.js"></script>
 </body>
 </html>

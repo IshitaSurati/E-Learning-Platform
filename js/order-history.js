@@ -1,33 +1,45 @@
-import { getPurchases } from '/api/purchase.api.js';
-import { getUserInfo } from '/api/user.api.js';
+import { loadNavbar } from '/components/navbar.js';
 
-document.addEventListener('DOMContentLoaded', async function() {
-    const user = getUserInfo();
-    const orderHistoryContainer = document.getElementById('order-history');
+document.addEventListener('DOMContentLoaded', function() {
+    loadNavbar();
 
-    if (user) {
-        try {
-            const purchases = await getPurchases(user.id);
-            purchases.forEach(purchase => {
-                const orderItem = document.createElement('div');
-                orderItem.className = 'card mb-3';
-                orderItem.innerHTML = `
-                    <div class="card-header">
-                        <h5 class="mb-0">${purchase.courseTitle}</h5>
-                    </div>
-                    <div class="card-body">
-                        <p>Course: ${purchase.courseTitle}</p>
-                        <p>Purchase Date: ${purchase.date}</p>
-                        <p>Seats Remaining: ${purchase.seatsRemaining}</p>
-                    </div>
-                `;
-                orderHistoryContainer.appendChild(orderItem);
-            });
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    } else {
-        alert('Please login to view your order history.');
-        window.location.href = '/pages/login.html';
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (!user) {
+        window.location.href = '/login.html';
+        return;
     }
+
+    fetch('http://localhost:3000/purchases')
+        .then(response => response.json())
+        .then(purchases => {
+            const userPurchases = purchases.filter(p => p.userId === user.id);
+            const ordersContainer = document.getElementById('orders-container');
+            ordersContainer.innerHTML = '';
+
+            if (userPurchases.length === 0) {
+                ordersContainer.innerHTML = '<p>No purchases yet.</p>';
+                return;
+            }
+
+            userPurchases.forEach(purchase => {
+                fetch(`http://localhost:3000/courses/${purchase.courseId}`)
+                    .then(response => response.json())
+                    .then(course => {
+                        const purchaseElement = document.createElement('div');
+                        purchaseElement.classList.add('purchase');
+                        purchaseElement.innerHTML = `
+                            <h2>${course.title}</h2>
+                            <img src="${course.image}" alt="${course.title}" style="width: 300px;">
+                            <p><strong>Topics:</strong> ${course.topics}</p>
+                            <p><strong>Subtopics:</strong> ${course.subtopics}</p>
+                            <p><strong>Details:</strong> ${course.details}</p>
+                            <p><strong>Seats:</strong> ${course.seats}</p>
+                            <p><strong>Coupon:</strong> ${course.coupon}</p>
+                        `;
+
+                        ordersContainer.appendChild(purchaseElement);
+                    });
+            });
+        });
 });

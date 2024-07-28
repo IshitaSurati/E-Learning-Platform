@@ -1,13 +1,13 @@
 {
   "users": [
-    {
-      "id": "30b3",
-      "username": "ishita",
-      "email": "ishitasurati83@gmail.com",
-      "password": "12345",
-      "role": "author"
-    }
+   
   ],
-  "courses": [],
-  "purchases": []
+  "courses": [
+    
+  ],
+  "purchases": [
+    {
+     
+    }
+  ]
 }
