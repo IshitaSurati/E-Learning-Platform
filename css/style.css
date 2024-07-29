@@ -1,89 +1,123 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
 }
 
-#content-container {
-  padding: 20px;
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #343a40;
 }
 
 form {
-  background-color: #fff;
-  padding: 20px;
-  margin: 50px auto;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    background-color: #ffffff;
 }
 
-form h1 {
-  text-align: center;
-  margin-bottom: 20px;
+form input[type="text"], form input[type="submit"], form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
 }
 
-form label {
-  display: block;
-  margin-bottom: 8px;
+form input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
 }
 
-form input, form select, form button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+form input[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
-form button {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
+.accordion {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0;
 }
 
-form button:hover {
-  background-color: #218838;
+.accordion.active, .accordion:hover {
+    background-color: #0056b3;
 }
 
-.course-item {
-  background-color: #fff;
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.order-item {
-  background-color: #fff;
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 768px) {
-  .course-item, .order-item {
-    padding: 5px;
-  }
+.panel {
+    padding: 0 10px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
 }
 
 .container {
-  padding: 20px;
+    padding: 20px;
 }
 
-.course-item {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+#courses-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.course-item img {
-  margin-bottom: 10px;
+.card {
+    width:300px;
+    margin: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.25em;
+    color: #007bff;
+}
+
+.card-text {
+    margin: 10px 0;
+}
+
+.card button {
+    width: 100%;
+    margin: 5px 0;
+}
+
+@media (max-width: 992px) {
+    .card {
+        width: 300px; 
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+    }
 }

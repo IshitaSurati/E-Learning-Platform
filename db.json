@@ -1,13 +1,68 @@
 {
   "users": [
-   
+    {
+      "id": "5fac",
+      "username": "ishita",
+      "email": "ishita123@gmail.com",
+      "password": "12345",
+      "role": "author"
+    },
+    {
+      "id": "6238",
+      "name": " John Doe",
+      "email": "johndoe@example.com",
+      "password": "12345",
+      "role": "user"
+    },
+    {
+      "id": "66c0",
+      "name": "admin",
+      "email": "admin@example.com",
+      "password": "12345",
+      "role": "user"
+    }
   ],
   "courses": [
-    
-  ],
-  "purchases": [
     {
-     
+      "id": "46fd",
+      "title": "Full-Stack Developer",
+      "image": "https://cdn.pixabay.com/photo/2016/12/28/09/36/web-1935737_960_720.png",
+      "description": "a web developer or engineer who builds and maintains both the front-end and back-end of a website.",
+      "duration": "1 year",
+      "fees": 60000,
+      "coupon": "Discount20",
+      "discount": 20,
+      "topics": [
+        {
+          "name": "Front-end development",
+          "details": "Front-end development is the process of creating the interface of a website. It entails coding details like drop-down menus, fonts, colors, and page layouts. Full-stack developers should also know how to work with front-end technologies like HTML, CSS, and scripting languages such as JavaScript to make websites and applications visually viable and appealing."
+        },
+        {
+          "name": "Back-end development",
+          "details": "Back-end development skills entail using back-end programming languages like Python, PHP, Ruby on Rails, and CakePHP and understanding how algorithms and business logic work. You can enhance your back-end development skills to prepare for a full-stack developer role with Meta's Back-End Developer Professional Certificate."
+        }
+      ]
+    },
+    {
+      "id": "ab20",
+      "title": "Flutter Developer",
+      "image": "https://cdn.pixabay.com/photo/2024/06/14/12/15/developer-8829711_1280.jpg",
+      "description": "Flutter is a new application development technology that is currently gaining popularity in the industry",
+      "duration": "1 year",
+      "fees": "80000",
+      "coupon": "Discount10",
+      "discount": "10",
+      "topics": [
+        {
+          "name": "Visually attractive yet faster apps",
+          "details": "Flutter has a distinct advantage over React Native, and that is its user-friendly UI. Flutter does not rely on native system components. Instead, as mentioned before, it has its own set of custom widgets that allow the creation of 2D, UI animation, and gestures."
+        },
+        {
+          "name": "Why is Flutter Becoming Popular",
+          "details": "Flutter is a free and open-source UI software development toolkit developed by Google and launched in 2017. Though relatively new, a lot of mobile app developers are seeing the benefits of using Flutter."
+        }
+      ]
     }
-  ]
+  ],
+  "orders": []
 }

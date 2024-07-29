@@ -1,56 +1,67 @@
-import { loadNavbar } from '/components/navbar.js';
-import { getCourses } from '/api/course.api.js';
+import navbar from '/components/navbar.js';
+import { getCourses } from '/api/courses.api.js';
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadNavbar();
+const currentUserRole = localStorage.getItem('userRole') || 'guest';
+document.getElementById('navbar-container').innerHTML = navbar(currentUserRole);
 
-    const user = JSON.parse(localStorage.getItem('user'));
+const getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem('currentUser')) || null;
+};
 
-    if (!user) {
-        window.location.href = '/pages/signup.html';
+const loadCourses = async () => {
+    try {
+        const courses = await getCourses();
+        const courseList = document.getElementById('course-list');
+        courseList.innerHTML = '';
+
+        const currentUser = getCurrentUser();
+
+        courses.forEach(course => {
+            const courseCard = document.createElement('div');
+            courseCard.className = 'col-md-4';
+            courseCard.innerHTML = `
+                <div class="card">
+                    <img src="${course.image}" class="card-img-top" alt="${course.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${course.title}</h5>
+                        <p class="card-text">${course.description}</p>
+                        <p class="card-text">Duration: ${course.duration}</p>
+                        <p class="card-text">Fees: $${course.fees}</p>
+                        <a href="/pages/course-details.html?id=${course.id}" class="btn btn-primary">View Details</a>
+                        ${currentUser && currentUser.role === 'user' ? `<a href="#" class="btn btn-success purchase-btn" data-id="${course.id}">Purchase</a>` : ''}
+                    </div>
+                </div>
+            `;
+            courseList.appendChild(courseCard);
+        });
+
+        document.querySelectorAll('.purchase-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                const courseId = button.getAttribute('data-id');
+                handlePurchase(courseId);
+            });
+        });
+
+    } catch (error) {
+        console.error('Error loading courses:', error);
+    }
+};
+
+const handlePurchase = async (courseId) => {
+    const currentUser = getCurrentUser();
+    if (!currentUser) {
+        alert('Please log in to purchase.');
         return;
     }
 
-    getCourses().then(courses => {
-        const contentContainer = document.getElementById('content-container');
-        contentContainer.innerHTML = '';
-
-        courses.forEach(course => {
-            const courseElement = document.createElement('div');
-            courseElement.classList.add('course');
-            courseElement.innerHTML = `
-                <h2>${course.title}</h2>
-                <img src="${course.image}" alt="${course.title}" style="width: 300px;">
-                <p><strong>Topics:</strong> ${course.topics}</p>
-                <p><strong>Subtopics:</strong> ${course.subtopics}</p>
-                <p><strong>Details:</strong> ${course.details}</p>
-                <p><strong>Seats:</strong> ${course.seats}</p>
-                <p><strong>Coupon:</strong> ${course.coupon}</p>
-                <button class="purchase-button btn btn-primary" data-id="${course.id}">Purchase</button>
-            `;
-
-            contentContainer.appendChild(courseElement);
-        });
-
-        document.querySelectorAll('.purchase-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const courseId = this.getAttribute('data-id');
-                purchaseCourse(courseId);
-            });
-        });
-    });
-
-    function purchaseCourse(courseId) {
-        const user = JSON.parse(localStorage.getItem('user'));
-
-        fetch('http://localhost:3000/purchases', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: user.id, courseId })
-        }).then(response => response.json()).then(() => {
-            alert('Course purchased successfully!');
-        }).catch(error => {
-            alert('Purchase failed. Please try again.');
-        });
+    try {
+    
+        console.log(`User ${currentUser.id} purchased course ${courseId}`);
+        alert('Purchase successful!');
+    } catch (error) {
+        console.error('Error processing purchase:', error);
     }
-});
+};
+
+loadCourses();

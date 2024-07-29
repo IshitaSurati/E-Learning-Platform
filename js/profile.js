@@ -1,33 +1,19 @@
-import { loadNavbar } from '/components/navbar.js';
-import { getUserInfo, updateUser } from '/api/user.api.js';
-
-document.addEventListener('DOMContentLoaded', function() {
-    loadNavbar();
-
-    const user = getUserInfo();
+document.addEventListener('DOMContentLoaded', () => {
+    const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user) {
-        window.location.href = 'login.html';
+        window.location.href = '/pages/login.html';
         return;
     }
 
-    document.getElementById('username').value = user.username;
-    document.getElementById('email').value = user.email;
+    document.getElementById('profile-info').innerHTML = `
+        <p><strong>Email:</strong> ${user.email}</p>
+        <p><strong>Role:</strong> ${user.role}</p>
+    `;
 
-    document.getElementById('profile-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        const updatedUser = { ...user, username, email };
-        if (password) updatedUser.password = password;
-
-        updateUser(updatedUser).then(() => {
-            alert('Profile updated successfully!');
-        }).catch(() => {
-            alert('Failed to update profile. Please try again.');
-        });
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('userRole');
+        window.location.href = '/pages/signup.html';
     });
 });

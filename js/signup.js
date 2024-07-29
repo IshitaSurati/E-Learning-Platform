@@ -1,30 +1,23 @@
-import { loadNavbar } from '/components/navbar.js';
 import { createUser } from '/api/user.api.js';
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadNavbar();
+document.getElementById('signup-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value;
 
-    document.getElementById('signup-form').addEventListener('submit', async function(e) {
-        e.preventDefault();
+    const userData = { name, email, password, role };
 
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const role = document.getElementById('role').value;
-
-        const user = {
-            username,
-            email,
-            password,
-            role
-        };
-
-        try {
-            await createUser(user);
-            alert('Signup successful! Please login.');
-            window.location.href = '/pages/signup.html';
-        } catch (error) {
-            alert('Signup failed. Please try again.');
+    try {
+        const newUser = await createUser(userData);
+        if (newUser) {
+            alert('User created successfully');
+            window.location.href = '/login.html';
         }
-    });
+    } catch (error) {
+        console.error('Error creating user:', error);
+        alert('Failed to create user. Please try again.');
+    }
 });
