@@ -6,20 +6,6 @@
       "email": "ishita123@gmail.com",
       "password": "12345",
       "role": "author"
-    },
-    {
-      "id": "6238",
-      "name": " John Doe",
-      "email": "johndoe@example.com",
-      "password": "12345",
-      "role": "user"
-    },
-    {
-      "id": "66c0",
-      "name": "admin",
-      "email": "admin@example.com",
-      "password": "12345",
-      "role": "user"
     }
   ],
   "courses": [
